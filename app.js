@@ -1,17 +1,59 @@
-const notes = require('./notes')
 const chalk = require('chalk')
-const argv = require('yargs').argv
+const yargs = require('yargs')
+const notes = require('./notes')
 
-const command = process.argv[2]
+// Create add command
+yargs
+    .command({
+        command: 'add',
+        desc: 'Adds a new note',
+        builder: {
+            title: {
+                describe: 'Note title',
+                demandOption: true,
+                type: 'string'
+            },
+            body: {
+                describe: 'Note body',
+                demandOption: true,
+                type: 'string'
+            }
+        },
+        handler: (argv) => {
+            console.log('Title: ' + argv.title)
+            console.log('Body: ' + argv.body)
+        }
+    })
 
-if (argv.ships > 3) {
-    console.log(chalk.blue('Success'))
-}
+// Create remove command
+yargs
+    .command({
+        command: 'remove',
+        desc: 'Removes a note',
+        handler: () => {
+            console.log('Removing the note...')
+        }
+    })
 
-if (command.toLowerCase() === 'add') {
-    console.log(chalk.green.bold('Adding note'))
-} else if (command.toLowerCase() === 'remove') {
-    console.log(chalk.yellow.bold('Removing note'))
-}
+// Create read command
+yargs
+    .command({
+        command: 'read',
+        desc: 'Displays a note',
+        handler: () => {
+            console.log('Displaying the note...')
+        }
+    })
 
+// Create list command
+yargs
+    .command({
+        command: 'list',
+        desc: 'Lists all the notes',
+        handler: () => {
+            console.log('Listing all the notes...')
+        }
+    })
 
+// Parses the arguments with all the details provided
+yargs.parse()
