@@ -11,10 +11,14 @@ const addNote = (title, body) => {
 
     // Filter creates a NEW array filled with all array elements that pass a test
     // So if there are any objects with the title equal to the one we're pasing, it will return true fill the new array with the element that passed the test
-    const duplicateNotes = notes.filter((note) => note.title === title)
+    // const duplicateNotes = notes.filter((note) => note.title === title)
+
+    // If the array.find() method finds a value and is equal to what we mentioned, this value will be returned and assigned to the duplicateNote variable
+    // otherwise, the value of duplicateNote will be undefined.
+    const duplicateNote = notes.find((note) => note.title === title)
 
     // If there are no duplicates, execute the code
-    if (duplicateNotes.length === 0) {
+    if (!duplicateNote) {
         // Push the content on an object
         notes.push({
             title: title,
@@ -44,6 +48,32 @@ const removeNote = (title) => {
         console.log(chalk.bgRed.bold(`Note with title "${title}" not found!`))
     }
 } 
+
+// Function to list all the notes
+const listNotes = () => {
+    const notes = loadNotes()
+    console.log(chalk.bgMagenta.bold('Your notes:'))
+    // console.log(loadNotes())
+    notes.forEach((note) => {
+        console.log(chalk.cyan(note.title))
+    })
+}
+
+// Function to read the list
+const readNote = (title) => {
+    const notes = loadNotes()
+    // Find the index where the note title is equal to the title passed in
+    const noteIndex = notes.findIndex((note) => note.title === title)
+
+    // If noteIndex is 0 or more, log the note
+    if (noteIndex >= 0) {
+        console.log(chalk.bgMagenta.bold('Here is your note:'))
+        console.log(`${chalk.cyan.bold(notes[noteIndex].title)}: ${notes[noteIndex].body}`)
+    // Else, if the value is -1 (if the .findIndex() method did not find the index of the title passed in), print error message
+    } else {
+        console.log(chalk.bgRed.bold(`Note with title "${title}" not found!`))
+    }
+}
 
 // Takes in the notes ARRAY, stringifys it's objects inside and saves them to the JSON file
 const saveNotes = (notes) => {
@@ -76,5 +106,7 @@ const loadNotes = () => {
 module.exports = {
     getNotes: getNotes,
     addNote: addNote,
-    removeNote: removeNote
+    removeNote: removeNote,
+    listNotes: listNotes,
+    readNote: readNote
 }
