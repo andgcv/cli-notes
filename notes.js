@@ -62,14 +62,13 @@ const listNotes = () => {
 // Function to read the list
 const readNote = (title) => {
     const notes = loadNotes()
-    // Find the index where the note title is equal to the title passed in
-    const noteIndex = notes.findIndex((note) => note.title === title)
+    // .find() to find and return the desired note where the title passed it is equal to the title of note
+    const note = notes.find((note) => note.title === title)
 
-    // If noteIndex is 0 or more, log the note
-    if (noteIndex >= 0) {
+    // If the .find() method found the desired note, log it, else log an error message
+    if (note) {
         console.log(chalk.bgMagenta.bold('Here is your note:'))
-        console.log(`${chalk.cyan.bold(notes[noteIndex].title)}: ${notes[noteIndex].body}`)
-    // Else, if the value is -1 (if the .findIndex() method did not find the index of the title passed in), print error message
+        console.log(`${chalk.cyan.bold(note.title)}: ${note.body}`)
     } else {
         console.log(chalk.bgRed.bold(`Note with title "${title}" not found!`))
     }
