@@ -19,7 +19,7 @@ yargs
                 type: 'string'
             }
         },
-        handler: (argv) => {
+        handler(argv) {
             notes.addNote(argv.title, argv.body)
         }
     })
@@ -29,8 +29,15 @@ yargs
     .command({
         command: 'remove',
         desc: 'Removes a note',
-        handler: () => {
-            console.log('Removing the note...')
+        builder: {
+            title: {
+                describe: 'Title of the note you want to remove',
+                demandOption: true,
+                type: 'string'
+            }
+        },
+        handler(argv) {
+            notes.removeNote(argv.title)
         }
     })
 
@@ -39,7 +46,7 @@ yargs
     .command({
         command: 'read',
         desc: 'Displays a note',
-        handler: () => {
+        handler() {
             console.log('Displaying the note...')
         }
     })
@@ -49,7 +56,7 @@ yargs
     .command({
         command: 'list',
         desc: 'Lists all the notes',
-        handler: () => {
+        handler() {
             console.log('Listing all the notes...')
         }
     })

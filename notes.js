@@ -1,17 +1,17 @@
 const fs = require('fs')
+const chalk = require('chalk')
 
 const getNotes = () => {
     return 'Your notes...'
 }
 
+// Function to add notes
 const addNote = (title, body) => {
     const notes = loadNotes()
 
-    // Filter creates an array filled with all array elements that pass a test
-    // So if there are any objects with the title equal to the one we're pasing, it will return true and fill the new array
-    const duplicateNotes = notes.filter((note) => {
-        return note.title === title
-    })
+    // Filter creates a NEW array filled with all array elements that pass a test
+    // So if there are any objects with the title equal to the one we're pasing, it will return true fill the new array with the element that passed the test
+    const duplicateNotes = notes.filter((note) => note.title === title)
 
     // If there are no duplicates, execute the code
     if (duplicateNotes.length === 0) {
@@ -22,12 +22,28 @@ const addNote = (title, body) => {
         })
 
         saveNotes(notes)
-        console.log('New note added!')
+        console.log('Creating a new note...')
+        console.log(chalk.bgGreen.bold('New note added!'))
     } else {
-        console.log("There's already a note with the given title.")
+        console.log(chalk.bgYellow.bold("There's already a note with the given title."))
     }
-    
 }
+
+// Function to remove notes
+const removeNote = (title) => {
+    const notes = loadNotes()
+
+    // Will create a new array with the notes to keep, aka the notes that pass the test, the other ones will not pass the test so they will not be added to the new array
+    const notesToKeep = notes.filter((note) => note.title !== title)
+
+    if (notesToKeep.length < notes.length) {
+        console.log(`Removing note with title "${title}"...`)
+        saveNotes(notesToKeep)
+        console.log(chalk.bgGreen.bold('Note removed!'))
+    } else {
+        console.log(chalk.bgRed.bold(`Note with title "${title}" not found!`))
+    }
+} 
 
 // Takes in the notes ARRAY, stringifys it's objects inside and saves them to the JSON file
 const saveNotes = (notes) => {
@@ -59,5 +75,6 @@ const loadNotes = () => {
 
 module.exports = {
     getNotes: getNotes,
-    addNote: addNote
+    addNote: addNote,
+    removeNote: removeNote
 }
