@@ -1,9 +1,7 @@
 # CLI-NOTES
 Simple command line application for adding, deleting and displaying notes, created with Node.js.
 
----
-
-## Commands
+## Commands:
 
 ### add
 > node app.js add --title "Title 1" --body "Lorem ipsum dolor sit amet."
