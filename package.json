@@ -1,5 +1,5 @@
 {
-  "name": "notes-app",
+  "name": "cli-notes",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "André Gonçalves",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "chalk": "^2.4.1",
     "yargs": "^14.2.0"
