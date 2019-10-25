@@ -7,7 +7,7 @@ Simple command line application for adding, deleting and displaying notes, creat
   * [read](#read)
   * [list](#list)
 
-### add
+## add:
 > node app.js add --title "Title 1" --body "Lorem ipsum dolor sit amet."
 
 Adds a new note to the *notes.json* file, with the given Title and Body properties.
