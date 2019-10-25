@@ -4,11 +4,6 @@ const chalk = require('chalk')
 // Function to add notes
 const addNote = (title, body) => {
     const notes = loadNotes()
-
-    // Filter creates a NEW array filled with all array elements that pass a test
-    // So if there are any objects with the title equal to the one we're pasing, it will return true fill the new array with the element that passed the test
-    // const duplicateNotes = notes.filter((note) => note.title === title)
-
     // If the array.find() method finds a value and is equal to what we mentioned, this value will be returned and assigned to the duplicateNote variable
     // otherwise, the value of duplicateNote will be undefined.
     const duplicateNote = notes.find((note) => note.title === title)
@@ -58,7 +53,6 @@ const listNotes = () => {
 // Function to read the list
 const readNote = (title) => {
     const notes = loadNotes()
-    // .find() to find and return the desired note where the title passed it is equal to the title of note
     const note = notes.find((note) => note.title === title)
 
     // If the .find() method found the desired note, log it, else log an error message
@@ -77,17 +71,7 @@ const saveNotes = (notes) => {
 }
 
 const loadNotes = () => {
-    // if (fs.existsSync('notes.json') && fs.readFileSync('notes.json') != "") {
-    //     const dataBuffer = fs.readFileSync('notes.json')
-    //     const dataJSON = dataBuffer.toString()
-    //     return JSON.parse(dataJSON)
-    // } else if (fs.existsSync('notes.json') && fs.readFileSync('notes.json') == "") {
-    //     return 'File is empty.'
-    // } else {
-    //     return "File doesn't exist"
-    // }
-
-    // Defensive code
+    // If the file exists, will convert the buffer to a string, parse through it and return a JS object, else return an empty array to be populated
     try {
         const dataBuffer = fs.readFileSync('notes.json')
         const dataJSON = dataBuffer.toString()
@@ -98,6 +82,7 @@ const loadNotes = () => {
     }
 }
 
+// Export the functions to be used by other files
 module.exports = {
     addNote: addNote,
     removeNote: removeNote,
