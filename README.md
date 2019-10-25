@@ -7,7 +7,6 @@ Simple command line application for adding, deleting and displaying notes, creat
   * [read](#read)
   * [list](#list)
 
-<a name="add"/>
 ### add
 > node app.js add --title "Title 1" --body "Lorem ipsum dolor sit amet."
 
