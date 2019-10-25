@@ -9,4 +9,4 @@ Simple command line application for adding, deleting and displaying notes, creat
 > node app.js add --title "Title 1" --body "Lorem ipsum dolor sit amet."
 
 Adds a new note to the *notes.json* file, with the given Title and Body properties.
-..* Note title and body are required.
+  * Note title and body are required.
