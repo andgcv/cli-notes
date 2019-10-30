@@ -1,7 +1,7 @@
 {
   "name": "cli-notes",
   "version": "1.0.0",
-  "description": "",
+  "description": "Simple command line application for adding, deleting and displaying notes, created with Node.js",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
